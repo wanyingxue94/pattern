@@ -12,7 +12,7 @@
         <form action="/register" method="POST" modelAttribute="registerForm">
             <div style="width: 100px; text-align:left;">
                 <div style="padding:10px;">
-                    User Name: <input name="username" />
+                    Username: <input name="username" />
                 </div>
                 <div style="padding:10px;">
                     Password: <input type="password" name="password" />

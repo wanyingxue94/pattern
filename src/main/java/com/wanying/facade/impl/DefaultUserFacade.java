@@ -20,6 +20,17 @@ public class DefaultUserFacade implements UserFacade {
 		user.setPassword(password);	
 		return userService.registerUser(user);
 	}
+	
+	@Override
+	public boolean doLogin(String username, String password) {
+		User user = userService.getUser(username);
+		if(user!=null) {
+			if(password.equals(user.getPassword())) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public UserService getUserService() {
 		return userService;

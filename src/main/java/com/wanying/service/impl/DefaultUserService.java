@@ -22,6 +22,12 @@ public class DefaultUserService implements UserService {
 			return false;
 		}	
 	}
+	
+	@Override
+	public User getUser(String id) {
+		return userDao.getUserById(id);
+	}
+
 
 	public UserDao getUserDao() {
 		return userDao;
@@ -30,5 +36,6 @@ public class DefaultUserService implements UserService {
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
 	}
+
 
 }

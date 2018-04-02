@@ -28,7 +28,7 @@ public class RegisterController {
 			@RequestParam(value="username", required=false) String username, 
 			@RequestParam(value="password", required=false) String password) {
 		if(userFacade.registerUser(username, password)) {
-			return "login";
+			return "redirect:login";
 		}else {
 			return "register";
 		}
