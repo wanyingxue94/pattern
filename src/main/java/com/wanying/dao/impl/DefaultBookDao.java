@@ -59,7 +59,7 @@ public class DefaultBookDao implements BookDao {
 
 	@Override
 	public List<Book> searchBookOnTopic(String searchKeyword) {
-		TypedQuery<Book> query = entityManager.createQuery(SEARCH_AUTHOR,Book.class);
+		TypedQuery<Book> query = entityManager.createQuery(SEARCH_TOPIC,Book.class);
 	    query.setParameter("searchKeyword", searchKeyword);
 	    return query.getResultList();
 	}
@@ -73,7 +73,7 @@ public class DefaultBookDao implements BookDao {
 
 	@Override
 	public List<Book> searchBookOnTitle(String searchKeyword) {
-		TypedQuery<Book> query = entityManager.createQuery(SEARCH_AUTHOR,Book.class);
+		TypedQuery<Book> query = entityManager.createQuery(SEARCH_TITLE,Book.class);
 	    query.setParameter("searchKeyword", "%"+searchKeyword+"%");
 	    return query.getResultList();
 	}
