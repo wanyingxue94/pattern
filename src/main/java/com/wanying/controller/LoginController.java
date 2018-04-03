@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.wanying.dto.UserDTO;
 import com.wanying.facade.UserFacade;
 
 @Controller
@@ -21,7 +22,9 @@ public class LoginController {
 	public String doLogin(HttpServletRequest request,
 			@RequestParam(value="username", required=false) String username, 
 			@RequestParam(value="password", required=false) String password) {
-		if(userFacade.doLogin(username, password)) {
+		UserDTO dto = userFacade.doLogin(username, password);
+		if(dto!=null) {
+			request.getSession().setAttribute("currentUser",dto);
 			return "redirect:books";
 		}else {
 			return "redirect:welcome";

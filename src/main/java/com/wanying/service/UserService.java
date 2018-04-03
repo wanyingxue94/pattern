@@ -8,4 +8,6 @@ public interface UserService {
 	
 	User getUser(String id);
 	
+	User updateUserDetail(String username, String shippingAddress, String paymentMethod);
+	
 }

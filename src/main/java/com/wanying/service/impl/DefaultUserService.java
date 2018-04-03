@@ -24,6 +24,11 @@ public class DefaultUserService implements UserService {
 	}
 	
 	@Override
+	public User updateUserDetail(String username, String shippingAddress, String paymentMethod) {
+		return userDao.updateUser(username, shippingAddress, paymentMethod);
+	}
+	
+	@Override
 	public User getUser(String id) {
 		return userDao.getUserById(id);
 	}

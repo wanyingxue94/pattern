@@ -19,6 +19,12 @@ public class DefaultBookService implements BookService {
 	public List<Book> getAllBook() {	
 		return bookDao.getAllBook();
 	}
+	
+	@Override
+	public Book getBookById(int id) {
+		return bookDao.getBookById(id);
+	}
+
 
 	public BookDao getBookDao() {
 		return bookDao;
@@ -27,6 +33,7 @@ public class DefaultBookService implements BookService {
 	public void setBookDao(BookDao bookDao) {
 		this.bookDao = bookDao;
 	}
+
 
 	
 }

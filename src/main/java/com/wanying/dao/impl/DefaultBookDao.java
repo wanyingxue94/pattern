@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.wanying.dao.BookDao;
 import com.wanying.entity.Book;
-import com.wanying.entity.User;
 
 @Transactional
 @Repository

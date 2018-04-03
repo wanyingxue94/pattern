@@ -7,5 +7,7 @@ import com.wanying.entity.Book;
 public interface BookService {
 	
 	List<Book> getAllBook();
+	
+	Book getBookById(int id);
 
 }

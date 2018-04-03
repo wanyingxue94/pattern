@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
+import com.wanying.ConverterUtil;
 import com.wanying.dto.BookDTO;
 import com.wanying.entity.Book;
 import com.wanying.facade.BookFacade;
@@ -30,7 +31,7 @@ public class DefaultBookFacade implements BookFacade {
 		List<BookDTO> result = new ArrayList<BookDTO>();
 		if(!CollectionUtils.isEmpty(books)) {
 			for(Book book: books) {
-				result.add(convertDTO(book));
+				result.add(ConverterUtil.convertBookDTO(book));
 			}
 		}
 		return result;
@@ -42,21 +43,12 @@ public class DefaultBookFacade implements BookFacade {
 		List<BookDTO> result = new ArrayList<BookDTO>();
 		if(!CollectionUtils.isEmpty(books)) {
 			for(Book book: books) {
-				result.add(convertDTO(book));
+				result.add(ConverterUtil.convertBookDTO(book));
 			}
 		}
 		return result;
 	}
 		
-
-	private BookDTO convertDTO(Book book) {
-		BookDTO dto = new BookDTO();
-		dto.setAuthor(book.getAuthor());
-		dto.setStock(book.getStock());
-		dto.setTitle(book.getTitle());
-		dto.setTopic(book.getTopic());
-		return dto;
-	}
 	
 	private List<Book> doSearch(String query, String searchOn) {
 		String stratgeyName = "";
@@ -66,7 +58,7 @@ public class DefaultBookFacade implements BookFacade {
 			stratgeyName = "searchBookTitleStrategy";
 		}else {
 			stratgeyName = "searchBookAuthorStrategy";
-		}
+		}	
 		SearchBookStrategy strategy = beanFactory.getBean(stratgeyName, SearchBookStrategy.class);
 		return strategy.searchBook(query);
 	}

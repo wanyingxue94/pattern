@@ -28,4 +28,13 @@ public class DefaultUserDao implements UserDao {
 		entityManager.persist(user);
 	}
 
+	@Override
+	public User updateUser(String username, String shippingAddress, String paymentMethod) {
+		User user = this.getUserById(username);
+		user.setShippingAddress(shippingAddress);
+		user.setPaymentMethod(paymentMethod);
+		entityManager.flush();
+		return user;
+	}
+
 }
