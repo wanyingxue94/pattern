@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wanying.dao.UserDao;
+import com.wanying.entity.Orders;
 import com.wanying.entity.User;
 import com.wanying.service.UserService;
 
@@ -32,7 +33,11 @@ public class DefaultUserService implements UserService {
 	public User getUser(String id) {
 		return userDao.getUserById(id);
 	}
-
+	
+	@Override
+	public void addOrderToUser(User user, Orders orders) {
+		userDao.addOrderToUser(user, orders);
+	}
 
 	public UserDao getUserDao() {
 		return userDao;
@@ -41,6 +46,8 @@ public class DefaultUserService implements UserService {
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
 	}
+
+
 
 
 }

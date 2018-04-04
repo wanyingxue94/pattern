@@ -10,7 +10,7 @@ public interface BookDao {
 	
 	void createUser(Book book);
 	
-	void updateStock(int id,int stock);
+	void updateStock(Book book,int stock);
 	
 	List<Book> getAllBook();
 	

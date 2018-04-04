@@ -2,7 +2,6 @@ package com.wanying.entity;
 
 import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,15 +12,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Order {
+public class Orders {
 
 
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	 @OneToMany
-     @JoinTable(name="order_entry",
-         joinColumns = @JoinColumn( name="order_id"),
+     @JoinTable(name="orders_entry",
+         joinColumns = @JoinColumn( name="orders_id"),
          inverseJoinColumns = @JoinColumn( name="entry_id")
      )
 	private Set<Entry> entries;
@@ -29,7 +28,7 @@ public class Order {
 	@ManyToOne
 	private User user;
 	
-	public Order() {
+	public Orders() {
 		
 	}
 

@@ -6,10 +6,12 @@ import java.util.List;
 import com.wanying.dto.BookDTO;
 import com.wanying.dto.CartDTO;
 import com.wanying.dto.EntryDTO;
+import com.wanying.dto.OrderDTO;
 import com.wanying.dto.UserDTO;
 import com.wanying.entity.Book;
 import com.wanying.entity.Cart;
 import com.wanying.entity.Entry;
+import com.wanying.entity.Orders;
 import com.wanying.entity.User;
 
 public class ConverterUtil {
@@ -50,6 +52,19 @@ public class ConverterUtil {
 		dto.setTotalPrice(cart.getTotalPrice());
 		List<EntryDTO> entries = new ArrayList<EntryDTO>();
 		for(Entry entry:cart.getEntries()) {
+			entries.add(convertEntryDTO(entry));
+		}
+		dto.setEntries(entries);
+		return dto;
+	}
+	
+	public static OrderDTO convertOrder(Orders order) {
+		OrderDTO dto = new OrderDTO();
+		dto.setId(order.getId());
+		dto.setUser(convertUserDTO(order.getUser()));
+		dto.setTotalPrice(order.getTotalPrice());
+		List<EntryDTO> entries = new ArrayList<EntryDTO>();
+		for(Entry entry:order.getEntries()) {
 			entries.add(convertEntryDTO(entry));
 		}
 		dto.setEntries(entries);

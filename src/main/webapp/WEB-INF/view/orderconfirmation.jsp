@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+</head>
 <style>
 table {
     font-family: arial, sans-serif;
@@ -23,10 +24,10 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 </style>
-</head>
 <body>
-<h1>My Cart</h1>
+<h1>Order Confirmation</h1>
 <div>
+<h2>Order Code: ${order.id}</h2>
 <table id="cart">
     <thead>
         <tr>
@@ -36,7 +37,7 @@ tr:nth-child(even) {
         </tr>
     </thead>
     <tbody>
-        <c:forEach var="entry" items="${cart.entries}">
+        <c:forEach var="entry" items="${order.entries}">
             <tr>
                 <td>${entry.book.title}</td>
                 <td>${entry.quantity}</td>
@@ -45,17 +46,9 @@ tr:nth-child(even) {
         </c:forEach>
     </tbody>
 </table>
-<h2>Total Price: ${cart.totalPrice}</h2>
-</div>
-<div>
- <form action="/books" id="goback">
-    <input type="submit" value="Go Back Shopping" />
-  </form>
-</div>
-  <div>
-  <form action="/order/placeOrder" method="POST" id="checkout">
-    <input type="submit" value="Checkout" />
-  </form>
+<h2>Total Price: ${order.totalPrice}</h2>
+<h2>Ship to: ${order.user.shippingAddress}</h2>
+<h2>Payment Method: ${order.user.paymentMethod}</h2>
 </div>
 </body>
 </html>

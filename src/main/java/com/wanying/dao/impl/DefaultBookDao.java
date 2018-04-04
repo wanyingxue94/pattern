@@ -38,10 +38,9 @@ public class DefaultBookDao implements BookDao {
 	}
 
 	@Override
-	public void updateStock(int id,int stock) {
-		Book book = getBookById(id);
+	public void updateStock(Book book,int stock) {
 		int originalStock = book.getStock();
-		int updateStock = originalStock+stock>0?originalStock+stock:0;
+		int updateStock = originalStock-stock;
 		book.setStock(updateStock);
 		entityManager.flush();
 	}

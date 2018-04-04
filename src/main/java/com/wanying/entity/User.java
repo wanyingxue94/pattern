@@ -4,10 +4,10 @@ import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.JoinColumn;
 
 @Entity
 public class User {
@@ -18,11 +18,11 @@ public class User {
 	@OneToOne
 	private Cart cart;
 	 @OneToMany
-     @JoinTable(name="user_order",
+     @JoinTable(name="user_orders",
          joinColumns = @JoinColumn( name="user_id"),
-         inverseJoinColumns = @JoinColumn( name="order_id")
+         inverseJoinColumns = @JoinColumn( name="orders_id")
      )
-	private Set<Order> orders;
+	private Set<Orders> orders;
 	private String paymentMethod;
 	private String shippingAddress;
 	
@@ -54,11 +54,11 @@ public class User {
 		this.cart = cart;
 	}
 	
-	public Set<Order> getOrders() {
+	public Set<Orders> getOrders() {
 		return orders;
 	}
 	
-	public void setOrders(Set<Order> orders) {
+	public void setOrders(Set<Orders> orders) {
 		this.orders = orders;
 	}
 	
