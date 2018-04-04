@@ -1,7 +1,6 @@
 package com.wanying.facade.impl;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.BeanFactory;
@@ -12,6 +11,7 @@ import org.springframework.util.CollectionUtils;
 import com.wanying.ConverterUtil;
 import com.wanying.dto.BookDTO;
 import com.wanying.entity.Book;
+import com.wanying.entity.Comment;
 import com.wanying.facade.BookFacade;
 import com.wanying.service.BookService;
 import com.wanying.strategy.SearchBookStrategy;
@@ -48,7 +48,32 @@ public class DefaultBookFacade implements BookFacade {
 		}
 		return result;
 	}
-		
+	
+	@Override
+	public BookDTO getBookById(int id) {
+		Book book = bookService.getBookById(id);
+		return ConverterUtil.convertBookDTO(book);
+	}
+	
+	@Override
+	public void addComment(int bookId, int rate, String username, String comment) {
+		Book book = bookService.getBookById(bookId);
+		if(CollectionUtils.isEmpty(book.getComment())) {
+			bookService.addNewComment(book, rate, comment, username);
+		}else {
+			boolean hasComment = false;
+			for(Comment c:book.getComment()) {
+				if(c.getUsername().equals(username)) {
+					hasComment = true;
+					bookService.updateComment(c, rate, comment);
+				}
+			}
+			if(!hasComment) {
+				bookService.addNewComment(book, rate, comment, username);
+			}
+		}
+	}
+
 	
 	private List<Book> doSearch(String query, String searchOn) {
 		String stratgeyName = "";

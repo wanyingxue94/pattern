@@ -1,5 +1,7 @@
 package com.wanying.dto;
 
+import java.util.List;
+
 public class BookDTO {
 	
 	private String author;
@@ -8,6 +10,8 @@ public class BookDTO {
 	private int stock;
 	private double price;
 	private int id;
+	private List<CommentDTO> comments;
+	private float rating;
 	
 	public BookDTO() {
 		
@@ -60,7 +64,21 @@ public class BookDTO {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	
+
+	public List<CommentDTO> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<CommentDTO> comments) {
+		this.comments = comments;
+	}
+
+	public float getRating() {
+		return rating;
+	}
+
+	public void setRating(float rating) {
+		this.rating = rating;
+	}
 	
 }

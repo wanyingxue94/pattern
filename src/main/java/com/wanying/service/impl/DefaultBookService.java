@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.wanying.dao.BookDao;
 import com.wanying.entity.Book;
+import com.wanying.entity.Comment;
 import com.wanying.service.BookService;
 
 @Service
@@ -24,6 +25,13 @@ public class DefaultBookService implements BookService {
 	public Book getBookById(int id) {
 		return bookDao.getBookById(id);
 	}
+	
+
+	@Override
+	public void addNewComment(Book book, int rate, String comment, String username) {
+		Comment newComment = bookDao.createComment(book, rate, username, comment);
+		bookDao.addComment(book, newComment);
+	}
 
 
 	public BookDao getBookDao() {
@@ -34,6 +42,9 @@ public class DefaultBookService implements BookService {
 		this.bookDao = bookDao;
 	}
 
+	@Override
+	public void updateComment(Comment c, int rate, String comment) {
+		bookDao.updateComment(c, rate, comment);
+	}
 
-	
 }

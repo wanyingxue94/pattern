@@ -1,6 +1,8 @@
 package com.wanying.dao.impl;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,9 +13,11 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import com.wanying.dao.BookDao;
 import com.wanying.entity.Book;
+import com.wanying.entity.Comment;
 
 @Transactional
 @Repository
@@ -74,6 +78,36 @@ public class DefaultBookDao implements BookDao {
 		TypedQuery<Book> query = entityManager.createQuery(SEARCH_TITLE,Book.class);
 	    query.setParameter("searchKeyword", "%"+searchKeyword+"%");
 	    return query.getResultList();
+	}
+
+	@Override
+	public Comment createComment(Book book,int rate, String username, String comment) {
+		Comment newComment = new Comment();
+		newComment.setComment(comment);
+		newComment.setRate(rate);
+		newComment.setUsername(username);
+		newComment.setBook(book);
+		entityManager.persist(newComment);
+		return newComment;
+	}
+
+	@Override
+	public void addComment(Book book, Comment comment) {
+		if(CollectionUtils.isEmpty(book.getComment())) {
+			Set<Comment> comments = new HashSet<>();
+			comments.add(comment);
+			book.setComment(comments);
+		}else {
+			book.getComment().add(comment);
+		}
+		entityManager.flush();
+	}
+
+	@Override
+	public void updateComment(Comment c, int rate, String comment) {
+		c.setId(rate);
+		c.setComment(comment);
+		entityManager.flush();
 	}
 
 }

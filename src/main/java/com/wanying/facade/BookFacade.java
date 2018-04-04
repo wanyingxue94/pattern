@@ -9,4 +9,8 @@ public interface BookFacade {
 	List<BookDTO> getAllBook();
 	
 	List<BookDTO> searchBook(String query, String searchOn);
+	
+	BookDTO getBookById(int id);
+	
+	void addComment(int bookId,int rate, String username,String comment);
 }

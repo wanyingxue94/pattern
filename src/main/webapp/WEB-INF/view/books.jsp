@@ -91,6 +91,9 @@ function sortTable(n) {
             <th onclick="sortTable(2)">Topic</th>
             <th onclick="sortTable(3)">Stock</th>
             <th onclick="sortTable(4)">Price</th>
+            <th onclick="sortTable(4)">Rate</th>
+            <th>Comments</th>
+            <th>Leave Comment</th>
             <th>Quantity to add</th>
         </tr>
     </thead>
@@ -102,6 +105,14 @@ function sortTable(n) {
                 <td>${book.topic}</td>
                 <td>${book.stock}</td>
                 <td>${book.price}</td>
+                <td>${book.rating}</td>
+                <td><a href="/showcomments/${book.id}">Show all comments</a></td>
+                <td>
+                <form action="edit-comment/${book.id}" method="GET">
+                	<input type="hidden" name="bookId" value=${book.id} />
+                	<input type="submit" value="Leave Comment" />
+                </form>
+                </td>
                 <td>
                 <form action="cart/add" method="POST">
                 <input name="quantityToAdd" />

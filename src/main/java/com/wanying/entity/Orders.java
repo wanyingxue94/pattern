@@ -67,6 +67,4 @@ public class Orders {
 		this.user = user;
 	}
 	
-	
-	
 }

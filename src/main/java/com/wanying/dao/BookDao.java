@@ -3,6 +3,7 @@ package com.wanying.dao;
 import java.util.List;
 
 import com.wanying.entity.Book;
+import com.wanying.entity.Comment;
 
 public interface BookDao {
 
@@ -19,5 +20,11 @@ public interface BookDao {
 	List<Book> searchBookOnAuthor(String searchKeyword);
 	
 	List<Book> searchBookOnTitle(String searchKeyword);
+	
+	Comment createComment(Book book,int rate, String username, String comment);
+	
+	void addComment(Book book,Comment comment);
+	
+	void updateComment(Comment c,int rate,String comment);
 	
 }

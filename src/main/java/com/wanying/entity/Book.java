@@ -1,9 +1,14 @@
 package com.wanying.entity;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Book {
@@ -16,6 +21,12 @@ public class Book {
 	private String title;
 	private int stock;
 	private double price;
+	@OneToMany
+    @JoinTable(name="book_comment",
+        joinColumns = @JoinColumn( name="book_id"),
+        inverseJoinColumns = @JoinColumn( name="comment_id")
+    )
+	private Set<Comment> comment;
 	
 	public int getId() {
 		return id;
@@ -52,6 +63,12 @@ public class Book {
 	}
 	public void setPrice(double price) {
 		this.price = price;
+	}
+	public Set<Comment> getComment() {
+		return comment;
+	}
+	public void setComment(Set<Comment> comment) {
+		this.comment = comment;
 	}
 	
 	
