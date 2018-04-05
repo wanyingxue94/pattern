@@ -110,4 +110,11 @@ public class DefaultBookDao implements BookDao {
 		entityManager.flush();
 	}
 
+
+	@Override
+	public void updateStockForAdmin(Book book, int updatedStock) {
+		book.setStock(updatedStock);
+		entityManager.flush();
+	}
+
 }

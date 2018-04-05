@@ -14,5 +14,7 @@ public interface BookService {
 	void addNewComment(Book book,int rate, String comment, String username);
 	
 	void updateComment(Comment c, int rate, String comment);
+	
+	void updateStock(Book book, int updatedStock);
 
 }

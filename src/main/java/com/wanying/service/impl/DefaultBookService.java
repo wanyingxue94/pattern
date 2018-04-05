@@ -33,6 +33,15 @@ public class DefaultBookService implements BookService {
 		bookDao.addComment(book, newComment);
 	}
 
+	@Override
+	public void updateComment(Comment c, int rate, String comment) {
+		bookDao.updateComment(c, rate, comment);
+	}
+
+	@Override
+	public void updateStock(Book book, int updatedStock) {
+		bookDao.updateStockForAdmin(book,updatedStock);
+	}
 
 	public BookDao getBookDao() {
 		return bookDao;
@@ -42,9 +51,5 @@ public class DefaultBookService implements BookService {
 		this.bookDao = bookDao;
 	}
 
-	@Override
-	public void updateComment(Comment c, int rate, String comment) {
-		bookDao.updateComment(c, rate, comment);
-	}
 
 }

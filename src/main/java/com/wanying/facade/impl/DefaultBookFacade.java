@@ -73,8 +73,14 @@ public class DefaultBookFacade implements BookFacade {
 			}
 		}
 	}
-
 	
+
+	@Override
+	public void updateBookStock(int bookId, int updatedStock) {
+		Book book = bookService.getBookById(bookId);
+		bookService.updateStock(book, updatedStock);		
+	}
+
 	private List<Book> doSearch(String query, String searchOn) {
 		String stratgeyName = "";
 		if(searchOn.equals("topic")) {
@@ -103,6 +109,5 @@ public class DefaultBookFacade implements BookFacade {
 	public void setBeanFactory(BeanFactory beanFactory) {
 		this.beanFactory = beanFactory;
 	}
-
 
 }

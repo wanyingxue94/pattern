@@ -27,4 +27,6 @@ public interface BookDao {
 	
 	void updateComment(Comment c,int rate,String comment);
 	
+	void updateStockForAdmin(Book book, int updatedStock);
+	
 }

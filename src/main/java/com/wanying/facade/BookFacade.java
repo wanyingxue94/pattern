@@ -13,4 +13,6 @@ public interface BookFacade {
 	BookDTO getBookById(int id);
 	
 	void addComment(int bookId,int rate, String username,String comment);
+	
+	void updateBookStock(int bookId,int updatedStock);
 }
