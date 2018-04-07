@@ -83,6 +83,18 @@ function sortTable(n) {
 </head>
 <body>
 <div>
+Search Books
+<form action="books/search" method="POST" modelAttribute="registerForm">
+<input name="query" />
+<select name="searchOn">
+  <option value="topic">topic</option>
+  <option value="author">author</option>
+  <option value="title">title</option>
+</select>
+<input type="submit" value="Search" />
+</form>
+</div>
+<div>
 <table id="books">
     <thead>
         <tr>
@@ -124,18 +136,6 @@ function sortTable(n) {
         </c:forEach>
     </tbody>
 </table>
-</div>
-<div>
-Search Books
-<form action="books/search" method="POST" modelAttribute="registerForm">
-<input name="query" />
-<select name="searchOn">
-  <option value="topic">topic</option>
-  <option value="author">author</option>
-  <option value="title">title</option>
-</select>
-<input type="submit" value="Search" />
-</form>
 </div>
 <div>
 <form action="/myaccount">

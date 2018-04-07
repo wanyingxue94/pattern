@@ -3,10 +3,15 @@ package com.wanying.dao.impl;
 
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,6 +57,16 @@ public class DefaultUserDao implements UserDao {
 			user.setOrders(neworders);
 		}
 		entityManager.flush();	
+	}
+
+	@Override
+	public List<User> getAllUser() {
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<User> cq = cb.createQuery(User.class);
+        Root<User> rootEntry = cq.from(User.class);
+        CriteriaQuery<User> all = cq.select(rootEntry);
+        TypedQuery<User> allQuery = entityManager.createQuery(all);
+        return allQuery.getResultList();
 	}
 
 }

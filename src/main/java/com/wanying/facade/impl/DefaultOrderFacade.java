@@ -1,9 +1,13 @@
 package com.wanying.facade.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 import com.wanying.ConverterUtil;
 import com.wanying.dto.CartDTO;
@@ -46,6 +50,19 @@ public class DefaultOrderFacade implements OrderFacade {
 			return null;
 		}
 	}
+	
+	@Override
+	public List<OrderDTO> getOrdersByUser(String username) {
+		User user = userService.getUser(username);
+		List<OrderDTO> orders = new ArrayList<>();
+		if(!CollectionUtils.isEmpty(user.getOrders())) {
+			for(Orders order:user.getOrders()) {
+				orders.add(ConverterUtil.convertOrder(order));
+			}
+		}
+		return orders;
+	}
+
 
 	public CartService getCartService() {
 		return cartService;
@@ -78,6 +95,5 @@ public class DefaultOrderFacade implements OrderFacade {
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
-
 	
 }
