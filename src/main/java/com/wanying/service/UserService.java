@@ -1,5 +1,7 @@
 package com.wanying.service;
 
+import java.util.List;
+
 import com.wanying.entity.Orders;
 import com.wanying.entity.User;
 
@@ -12,5 +14,7 @@ public interface UserService {
 	User updateUserDetail(String username, String shippingAddress, String paymentMethod);
 	
 	void addOrderToUser(User user, Orders orders);
+	
+	List<User> getAllUserForAdin();
 	
 }

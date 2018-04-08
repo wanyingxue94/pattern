@@ -1,10 +1,13 @@
 package com.wanying.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -43,6 +46,17 @@ public class OrderController {
 		}else {
 			return "redirect: welcome";
 		}
+	}
+	
+	@RequestMapping(value="/order/user/{username}", method = RequestMethod.GET)
+	public String getOrderForUser(HttpServletRequest request,Model model,@PathVariable("username") String username) {
+		if(request.getSession().getAttribute("currentUser") ==null) {
+			return "redirect:/backoffice";
+		}else {
+			List<OrderDTO> orders = orderFacade.getOrdersByUser(username);
+			model.addAttribute("orders",orders);
+			return "backofficeuserorders";
+		}		
 	}
 
 	public OrderFacade getOrderFacade() {

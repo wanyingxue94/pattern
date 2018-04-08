@@ -1,5 +1,8 @@
 package com.wanying.facade.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -40,6 +43,29 @@ public class DefaultUserFacade implements UserFacade {
 		return ConverterUtil.convertUserDTO(user);
 	}
 	
+	@Override
+	public List<UserDTO> getAllUsersForAdmin() {
+		List<User> users = userService.getAllUserForAdin();
+		List<UserDTO> result = new ArrayList<UserDTO>();
+		for(User user:users) {
+			result.add(ConverterUtil.convertUserDTO(user));
+		}
+		return result;
+	}
+	
+
+	@Override
+	public UserDTO getUserById(String username) {
+		User user = userService.getUser(username);
+		if(user!=null) {
+			return ConverterUtil.convertUserDTO(user);
+		}else {
+			return null;
+		}
+	}
+
+
+	
 	public UserService getUserService() {
 		return userService;
 	}
@@ -47,5 +73,6 @@ public class DefaultUserFacade implements UserFacade {
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
+
 
 }

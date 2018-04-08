@@ -1,5 +1,6 @@
 package com.wanying.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -47,7 +48,7 @@ public class BackofficeController {
 	
 	
 	@RequestMapping(value="/backoffice/books", method = RequestMethod.GET)
-	public String backofficeBooks(Model model) {
+	public String backofficeBooks(HttpServletRequest request,Model model) {
 		List<BookDTO> books = bookFacade.getAllBook();
 		model.addAttribute("books", books);
 		return "backofficebooks";
@@ -64,6 +65,52 @@ public class BackofficeController {
 	}
 	
 	
+	@RequestMapping(value="/backoffice/users", method = RequestMethod.GET)
+	public String backofficeUsers(HttpServletRequest request,Model model) {
+		List<UserDTO> users = userFacade.getAllUsersForAdmin();
+		model.addAttribute("users", users);
+		return "backofficeusers";
+	}
+	
+	@RequestMapping(value="/backoffice/updateStock", method = RequestMethod.POST)
+	public String searchBooks(Model model,HttpServletRequest request,
+			@RequestParam(value="bookId", required=false) int bookId, 
+			@RequestParam(value="updatedStock", required=false) int updatedStock) {
+		if(request.getSession().getAttribute("currentUser") ==null) {
+			return "redirect:/backoffice";
+		}else {
+			UserDTO currentUser = (UserDTO)request.getSession().getAttribute("currentUser");
+			if(currentUser.getUsername().equals("admin")) {
+				bookFacade.updateBookStock(bookId, updatedStock);
+				return "redirect:/backoffice/books";
+			}else {
+				return "redirect:/backoffice";
+			}
+		}
+		
+	}
+	
+	@RequestMapping(value="/backoffice/users/search", method = RequestMethod.POST)
+	public String searchUser(Model model,HttpServletRequest request,
+			@RequestParam(value="username", required=false) String username) {
+		if(request.getSession().getAttribute("currentUser") ==null) {
+			return "redirect:/backoffice";
+		}else {
+			UserDTO currentUser = (UserDTO)request.getSession().getAttribute("currentUser");
+			if(currentUser.getUsername().equals("admin")) {
+				List<UserDTO> users = new ArrayList<UserDTO>();
+				UserDTO user = userFacade.getUserById(username);
+				if(user!=null&&!user.getUsername().equals("admin")) {
+					users.add(user);
+				}
+				model.addAttribute("users", users);
+				return "backofficeusers";
+			}else {
+				return "redirect:/backoffice";
+			}
+		}
+		
+	}
 
 	public UserFacade getUserFacade() {
 		return userFacade;

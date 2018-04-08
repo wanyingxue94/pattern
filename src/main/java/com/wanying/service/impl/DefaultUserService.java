@@ -1,5 +1,9 @@
 package com.wanying.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +42,14 @@ public class DefaultUserService implements UserService {
 	public void addOrderToUser(User user, Orders orders) {
 		userDao.addOrderToUser(user, orders);
 	}
+	
+
+	@Override
+	public List<User> getAllUserForAdin() {
+		List<User> allUsers = new ArrayList<>(userDao.getAllUser());
+		List<User> result = allUsers.stream().filter(user->!"admin".equals(user.getId())).collect(Collectors.toList());
+		return result;
+	}
 
 	public UserDao getUserDao() {
 		return userDao;
@@ -46,8 +58,6 @@ public class DefaultUserService implements UserService {
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
 	}
-
-
 
 
 }

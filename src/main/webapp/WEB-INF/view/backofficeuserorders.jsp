@@ -82,56 +82,45 @@ function sortTable(n) {
 </script>
 <body>
 <div>
-Search Books
-<form action="books/search" method="POST" modelAttribute="registerForm">
-<input name="query" />
-<select name="searchOn">
-  <option value="topic">topic</option>
-  <option value="author">author</option>
-  <option value="title">title</option>
-</select>
-<input type="submit" value="Search" />
-</form>
-</div>
-<div>
-<table id="books">
+<table id="orders">
     <thead>
         <tr>
-            <th onclick="sortTable(0)">Title</th>
-            <th onclick="sortTable(1)">Author</th>
-            <th onclick="sortTable(2)">Topic</th>
-            <th onclick="sortTable(3)">Stock</th>
-            <th onclick="sortTable(4)">Price</th>
-            <th onclick="sortTable(4)">Rate</th>
-            <th>Update Stock</th>
+            <th onclick="sortTable(0)">Order Id</th>
+            <th onclick="sortTable(1)">Entries</th>
+            <th onclick="sortTable(2)">Total Price</th>
         </tr>
     </thead>
     <tbody>
-        <c:forEach var="book" items="${books}">
+        <c:forEach var="order" items="${orders}">
             <tr>
-                <td>${book.title}</td>
-                <td>${book.author}</td>
-                <td>${book.topic}</td>
-                <td>${book.stock}</td>
-                <td>${book.price}</td>
-                <td>${book.rating}</td>
+                <td>${order.id}</td>
                 <td>
-                	<form action="/backoffice/updateStock" method="POST">
-                		<input name="updatedStock" />
-                		<input type="hidden" name="bookId" value=${book.id} />
-                		<input type="submit" value="Update Stock" />
-                	</form>
+                	<div>
+                		<table id="entry">
+						    <thead>
+						        <tr>
+						            <th>Book</th>
+						            <th>Quantity</th>
+						            <th>Price</th>
+						        </tr>
+						    </thead>
+						    <tbody>
+						        <c:forEach var="entry" items="${order.entries}">
+						            <tr>
+						                <td>${entry.book.title}</td>
+						                <td>${entry.quantity}</td>
+						                <td>${entry.price}</td>
+						            </tr>       
+						        </c:forEach>
+						    </tbody>
+						</table>
+                	</div>
                 </td>
+                <td>${order.totalPrice}</td>
             </tr>       
         </c:forEach>
     </tbody>
 </table>
 </div>
-<div>
-<br>
- <form action="/backoffice/users">
-    <input type="submit" value="View Users" />
- </form>
- </div>
 </body>
 </html>
