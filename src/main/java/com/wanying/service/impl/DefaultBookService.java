@@ -51,13 +51,9 @@ public class DefaultBookService implements BookService {
 		try {
 				byte[] imageByte = file!=null?file.getBytes():null;
 				double bookPrice = StringUtils.isNullOrEmpty(price)?0.0:Double.parseDouble(price);
-				Book book = new Book();
-				book.setAuthor(author);
-				book.setBookImage(imageByte);
-				book.setTitle(title);
-				book.setPrice(bookPrice);
-				book.setTopic(topic);
-				book.setStock(stock);
+				Book book = new Book.BookBuilder().setAuthor(author)
+						.setBookImage(imageByte).setPrice(bookPrice)
+						.setStock(stock).setTitle(title).setTopic(topic).build();
 				bookDao.createBook(book);
 			} catch (IOException e) {
 				e.printStackTrace();

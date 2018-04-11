@@ -31,6 +31,10 @@ public class Book {
 	@Lob
 	private byte[] bookImage;
 	
+	public Book() {
+		
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -80,6 +84,51 @@ public class Book {
 		this.bookImage = bookImage;
 	}
 	
+	private Book(BookBuilder builder) {
+		this.author=builder.author;
+		this.topic=builder.topic;
+		this.title=builder.title;
+		this.stock=builder.stock;
+		this.price=builder.price;
+		this.bookImage=builder.bookImage;
+	}
 	
+	public static class BookBuilder{
+		private String author;
+		private String topic;
+		private String title;
+		private int stock;
+		private double price;
+		private byte[] bookImage;
+		
+		public BookBuilder setAuthor(String author) {
+			this.author = author;
+			return this;
+		}
+		public BookBuilder setTopic(String topic) {
+			this.topic = topic;
+			return this;
+		}
+		public BookBuilder setTitle(String title) {
+			this.title = title;
+			return this;
+		}
+		public BookBuilder setStock(int stock) {
+			this.stock = stock;
+			return this;
+		}
+		public BookBuilder setPrice(double price) {
+			this.price = price;
+			return this;
+		}
+		public BookBuilder setBookImage(byte[] bookImage) {
+			this.bookImage = bookImage;
+			return this;
+		}
+		public Book build() {
+			return new Book(this);
+		}
+		
+	}
 	
 }
