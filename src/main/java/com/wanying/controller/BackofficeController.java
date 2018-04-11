@@ -111,6 +111,22 @@ public class BackofficeController {
 		}
 		
 	}
+	
+	@RequestMapping(value="/backoffice/addbook", method = RequestMethod.GET)
+	public String addBookView(Model model,HttpServletRequest request) {
+		if(request.getSession().getAttribute("currentUser") ==null) {
+			return "backofficebooksadd";
+		}else {
+			UserDTO currentUser = (UserDTO)request.getSession().getAttribute("currentUser");
+			if(currentUser.getUsername().equals("admin")) {
+				return "backofficebooksadd";
+			}else {
+				return "redirect:/backoffice";
+			}
+		}
+		
+	}
+	
 
 	public UserFacade getUserFacade() {
 		return userFacade;

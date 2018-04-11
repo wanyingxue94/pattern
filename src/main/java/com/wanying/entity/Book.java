@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -27,6 +28,8 @@ public class Book {
         inverseJoinColumns = @JoinColumn( name="comment_id")
     )
 	private Set<Comment> comment;
+	@Lob
+	private byte[] bookImage;
 	
 	public int getId() {
 		return id;
@@ -69,6 +72,12 @@ public class Book {
 	}
 	public void setComment(Set<Comment> comment) {
 		this.comment = comment;
+	}
+	public byte[] getBookImage() {
+		return bookImage;
+	}
+	public void setBookImage(byte[] bookImage) {
+		this.bookImage = bookImage;
 	}
 	
 	

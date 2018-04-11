@@ -12,6 +12,7 @@ public class BookDTO {
 	private int id;
 	private List<CommentDTO> comments;
 	private float rating;
+	private byte[] image;
 	
 	public BookDTO() {
 		
@@ -80,5 +81,14 @@ public class BookDTO {
 	public void setRating(float rating) {
 		this.rating = rating;
 	}
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+	
 	
 }

@@ -37,7 +37,7 @@ public class DefaultBookDao implements BookDao {
 	}
 
 	@Override
-	public void createUser(Book book) {
+	public void createBook(Book book) {
 		entityManager.persist(book);
 	}
 

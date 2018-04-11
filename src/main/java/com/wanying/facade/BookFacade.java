@@ -2,6 +2,8 @@ package com.wanying.facade;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.wanying.dto.BookDTO;
 
 public interface BookFacade {
@@ -15,4 +17,6 @@ public interface BookFacade {
 	void addComment(int bookId,int rate, String username,String comment);
 	
 	void updateBookStock(int bookId,int updatedStock);
+	
+	void addBook(MultipartFile file,String title,String author,String topic,int stock,String price);
 }

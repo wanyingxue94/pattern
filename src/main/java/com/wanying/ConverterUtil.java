@@ -27,6 +27,7 @@ public class ConverterUtil {
 		dto.setTitle(book.getTitle());
 		dto.setTopic(book.getTopic());
 		dto.setPrice(book.getPrice());
+		dto.setImage(book.getBookImage());
 		dto.setId(book.getId());
 		List<CommentDTO> comments = new ArrayList<CommentDTO>();
 		for(Comment comment:book.getComment()) {

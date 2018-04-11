@@ -7,6 +7,7 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.wanying.ConverterUtil;
 import com.wanying.dto.BookDTO;
@@ -24,6 +25,9 @@ public class DefaultBookFacade implements BookFacade {
 	
 	@Autowired
 	private  BeanFactory beanFactory;
+	
+//	@Autowired
+//	private FileService fileService;
 	
 	@Override
 	public List<BookDTO> getAllBook() {
@@ -80,6 +84,11 @@ public class DefaultBookFacade implements BookFacade {
 		Book book = bookService.getBookById(bookId);
 		bookService.updateStock(book, updatedStock);		
 	}
+	
+	@Override
+	public void addBook(MultipartFile file, String title, String author, String topic, int stock, String price) {
+		bookService.createNewBook(file, title, author, topic, stock, price);
+	}
 
 	private List<Book> doSearch(String query, String searchOn) {
 		String stratgeyName = "";
@@ -109,5 +118,7 @@ public class DefaultBookFacade implements BookFacade {
 	public void setBeanFactory(BeanFactory beanFactory) {
 		this.beanFactory = beanFactory;
 	}
+
+
 
 }
