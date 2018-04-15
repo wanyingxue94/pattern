@@ -98,7 +98,6 @@ Search Books
 <table id="books">
     <thead>
         <tr>
-        	<th>Image</th>
             <th onclick="sortTable(0)">Title</th>
             <th onclick="sortTable(1)">Author</th>
             <th onclick="sortTable(2)">Topic</th>
@@ -113,7 +112,6 @@ Search Books
     <tbody>
         <c:forEach var="book" items="${books}">
             <tr>
-           		<td><img src="/book/imageDisplay?id=${book.id}" height="42" width="42"/></td>
                 <td>${book.title}</td>
                 <td>${book.author}</td>
                 <td>${book.topic}</td>
@@ -142,6 +140,13 @@ Search Books
 <div>
 <form action="/myaccount">
     <input type="submit" value="Edit My Account" />
+</form>
 </div>
+    <div>
+    	<br>
+    	<form action="/logout" method="POST">
+    		<input type="submit" value="Logout" />
+    	 </form>
+    </div>
 </body>
 </html>

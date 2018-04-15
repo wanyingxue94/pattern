@@ -83,7 +83,7 @@ function sortTable(n) {
 <body>
 <div>
 Search Books
-<form action="books/search" method="POST" modelAttribute="registerForm">
+<form action="/books/search" method="POST" modelAttribute="registerForm">
 <input name="query" />
 <select name="searchOn">
   <option value="topic">topic</option>
@@ -140,6 +140,12 @@ Search Books
  <form action="/backoffice/users">
     <input type="submit" value="View Users" />
  </form>
+      <div>
+    	<br>
+    	<form action="/logout" method="POST">
+    		<input type="submit" value="Logout" />
+    	 </form>
+    </div>
 </div>
 </body>
 </html>

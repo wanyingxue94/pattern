@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,6 +28,22 @@ public class LoginController {
 		}else {
 			return "redirect:welcome";
 		}	
+	}
+	
+	@RequestMapping(value="/logout", method = RequestMethod.POST)
+	public String doLogout(HttpServletRequest request) {
+		if(request.getSession().getAttribute("currentUser")!=null) {
+			UserDTO currentUser = (UserDTO) request.getSession().getAttribute("currentUser");
+			request.getSession().setAttribute("currentUser",null);
+			request.getSession().setAttribute("sessionCart",null);
+			if(currentUser.getUsername().equals("admin")) {
+				return "redirect:/backoffice";
+			}else {
+				return "redirect:/welcome";
+			}
+		}else {
+			return "redirect:/welcome";
+		}
 	}
 
 	public UserFacade getUserFacade() {

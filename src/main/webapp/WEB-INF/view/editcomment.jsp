@@ -43,5 +43,12 @@
             </div>
         </form>
     </div>
+        <div>
+    	<br>
+    	<form action="/logout" method="POST">
+    		<input type="submit" value="Logout" />
+    	 </form>
+    </div>
 </body>
+
 </html>

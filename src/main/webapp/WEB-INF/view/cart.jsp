@@ -57,5 +57,11 @@ tr:nth-child(even) {
     <input type="submit" value="Checkout" />
   </form>
 </div>
+    <div>
+    	<br>
+    	<form action="/logout" method="POST">
+    		<input type="submit" value="Logout" />
+    	 </form>
+    </div>
 </body>
 </html>
