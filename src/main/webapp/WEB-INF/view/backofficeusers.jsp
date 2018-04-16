@@ -88,6 +88,7 @@ Search User
 <input type="submit" value="Search" />
 </form>
 </div>
+<br>
 <div>
 <table id="users">
     <thead>
@@ -111,6 +112,7 @@ Search User
     </tbody>
 </table>
 </div>
+<br>
 <form action="/logout" method="POST">
     <input type="submit" value="Logout" />
  </form>

@@ -36,7 +36,7 @@
 							}
 					</script>
                 </div>
-                <div style="padding:20px;text-align:center">
+                <div style="padding-left:10px;">
                     <input type="submit" value="Submit" />
                 </div>
             </div>
@@ -44,9 +44,11 @@
     </div>
     <div>
     	<br>
+    	<div style="padding-left:60px;">
     	<form action="/logout" method="POST">
     		<input type="submit" value="Logout" />
     	 </form>
+    	 </div>
     </div>
 </body>
 

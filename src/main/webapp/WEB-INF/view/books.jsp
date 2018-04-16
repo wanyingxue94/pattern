@@ -23,6 +23,29 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+
+#books {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#books td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#books tr:nth-child(even){background-color: #f2f2f2;}
+
+#books tr:hover {background-color: #ddd;}
+
+#books th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
 </style>
 <script>
 function sortTable(n) {
@@ -94,6 +117,7 @@ Search Books
 <input type="submit" value="Search" />
 </form>
 </div>
+<br>
 <div>
 <table id="books">
     <thead>
@@ -137,6 +161,7 @@ Search Books
     </tbody>
 </table>
 </div>
+<br>
 <div>
 <form action="/myaccount">
     <input type="submit" value="Edit My Account" />

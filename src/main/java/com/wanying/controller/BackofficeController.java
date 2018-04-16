@@ -67,9 +67,19 @@ public class BackofficeController {
 	
 	@RequestMapping(value="/backoffice/users", method = RequestMethod.GET)
 	public String backofficeUsers(HttpServletRequest request,Model model) {
-		List<UserDTO> users = userFacade.getAllUsersForAdmin();
-		model.addAttribute("users", users);
-		return "backofficeusers";
+		if(request.getSession().getAttribute("currentUser") ==null) {
+			return "redirect:/backoffice";
+		}else {
+			UserDTO currentUser = (UserDTO)request.getSession().getAttribute("currentUser");
+		
+			if(currentUser.getUsername().equals("admin")) {
+				List<UserDTO> users = userFacade.getAllUsersForAdmin();
+				model.addAttribute("users", users);
+				return "backofficeusers";
+			}else {
+				return "redirect:/backoffice";
+			}
+		}
 	}
 	
 	@RequestMapping(value="/backoffice/updateStock", method = RequestMethod.POST)

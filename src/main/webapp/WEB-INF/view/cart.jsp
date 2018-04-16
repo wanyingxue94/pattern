@@ -52,6 +52,7 @@ tr:nth-child(even) {
     <input type="submit" value="Go Back Shopping" />
   </form>
 </div>
+<br>
   <div>
   <form action="/order/placeOrder" method="POST" id="checkout">
     <input type="submit" value="Checkout" />

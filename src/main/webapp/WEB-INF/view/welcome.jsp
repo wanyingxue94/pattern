@@ -5,24 +5,57 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Welcome</title>
+<style>
+form {
+  margin:0 auto;
+  width:300px
+}
+input {
+  margin-bottom:3px;
+  padding:10px;
+  width: 100%;
+  border:1px solid #CCC
+}
+button {
+  padding:10px
+}
+label {
+  cursor:pointer
+}
+#form-switch {
+  display:none
+}
+#register-form {
+  display:none
+}
+#form-switch:checked~#register-form {
+  display:block
+}
+#form-switch:checked~#login-form {
+  display:none
+}
+</style>
 </head>
+
 <body>
-<h2>User login</h2>
-    <form action="/login" method="POST">
-        <div style="width: 100px; text-align:left;">
-            <div style="padding:10px;">
-                 Username: <input name="username" />
-            </div>
-            <div style="padding:10px;">
-                Password: <input type="password" name="password" />
-            </div>
-            <div style="padding:20px;text-align:center">
-                <input type="submit" value="Submit" />
-            </div>
-        </div>
-    </form>
-    <form action="/register">
-    <input type="submit" value="Register" />
-</form>
+	<div style = "text-align:center">
+	<h1>Welcome</h1>
+	</div>
+	<input type='checkbox' id='form-switch'>
+		<form id='login-form' action="/login" method="POST">
+  			<input name="username" type="text" placeholder="Username" required>
+  			<input name="password" type="password" placeholder="Password" required>
+  			<button type='submit'>Login</button>
+  			<label for='form-switch'><span>Register</span></label>
+		</form>
+		
+		<form id='register-form' action="/register" method='post' modelAttribute="registerForm">
+  			<input name="username" type="text" placeholder="Username" required>
+  			<input name="password" type="password" placeholder="Password" required>
+  			<input type="password" placeholder="Re Password" required>
+  			<button type='submit'>Register</button>
+  			<br>
+  			<label for='form-switch'>Already Member?Sign In Now..</label>
+		</form>
 </body>
 </html>
